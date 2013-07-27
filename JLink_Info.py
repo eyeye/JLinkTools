@@ -8,44 +8,86 @@ import sys, os, subprocess
 import time
 
 
-JLINK_UPLOAD = '''
-power on
-r
-loadbin %BIN% 0x00014000
-r
-q
-'''
+JLINK_EXE       = r'G:\Program Files\SEGGER\JLinkARM_V464a\JLink.exe'
+JLINK_SCRIPT    = r'jlink.script'
+DEVIDE          = r'LPC1768'
+INTERFACE       = r'SWD'
+SPEED           = r'500'
 
 
-JLINK_EXE = r'G:\Program Files\SEGGER\JLinkARM_V464a\JLink.exe'
-JLINK_SCRIPT = r'jlink.script'
 
-print time.time()
+def reset():
+    print 'reset'
+    pass
 
-sp = subprocess.Popen([JLINK_EXE, JLINK_SCRIPT],
+
+def program():
+    print 'program'
+    pass
+
+
+
+def erase():
+    print 'erase'
+    pass
+
+def gdbserver():
+    print 'gdbserver'
+    pass
+
+
+
+
+
+
+
+command = [
+    JLINK_EXE,
+    '-If', INTERFACE,
+    '-Speed', SPEED,
+    '-CommanderScript', JLINK_SCRIPT,
+    '-Device', DEVIDE
+];
+
+sp = subprocess.Popen(command,
                       stdout=subprocess.PIPE,
                       stdin=subprocess.PIPE,
                       stderr=subprocess.PIPE)
 
-
-# print sp.pid
-print sp.returncode
-# print sp
-
-# time.sleep(5)
-sp.wait()
+print 'PID: %r' % sp.pid
+print 'RET CODE: %r' % sp.returncode
 print 'wait'
+sp.wait()
 
-# print sp.stdout.read()
-# print sp.stdin.read()
-# print sp.stderr.read()
-#
-# sp.stdin.write('q')
+out, err =  sp.communicate()
 
-print sp.communicate()
+print out #repr(out)
 
 sp.wait()
 
 print 'Finished'
 
 # print sp.stdout.read()
+
+if __name__ == '__main__':
+    print 'startup.........................'
+    cmd = raw_input(
+        '''
+        1 - reset
+        2 - program
+        3 - erase
+        4 - gdbserver
+        ''')
+
+    print cmd
+
+    if cmd == '1':
+        reset()
+    elif cmd == '2':
+        program()
+    elif cmd == '3':
+        erase()
+    elif cmd == '4':
+        gdbserver()
+    else:
+        print 'none cmd'
