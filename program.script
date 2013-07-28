@@ -1,3 +1,9 @@
 power on
 r
+Sleep 100
+loadbin "/Volumes/OSX ML/Users/EYE/workspace/eclipse_cdt/OSX_GNUARM_Test/Debug/OSX_GNUARM_Test.hex" 0x00014000
+verifybin "/Volumes/OSX ML/Users/EYE/workspace/eclipse_cdt/OSX_GNUARM_Test/Debug/OSX_GNUARM_Test.hex" 0x00014000
+r
+Sleep 100
+g
 q

@@ -6,23 +6,94 @@ print '杨志勇'
 
 import sys, os, subprocess
 import time
+import platform
+
+if platform.system() == 'Darwin':
+    print 'OSX Config'
+    JLINK_EXE = r'JLinkExe'
+    JLINK_DIR = r'/Users/EYE/Dev/JLink_MacOSX_V462a/'
+    JLINK_SCRIPT = r'jlink.script'
+
+    sys.path.append(JLINK_DIR)
+    os.environ['DYLD_LIBRARY_PATH'] = JLINK_DIR
+
+else:
+    print 'Windows Config'
+    JLINK_EXE = r'G:\Program Files\SEGGER\JLinkARM_V464a\JLink.exe'
+    JLINK_SCRIPT = r'jlink.script'
 
 
-JLINK_EXE       = r'G:\Program Files\SEGGER\JLinkARM_V464a\JLink.exe'
-JLINK_SCRIPT    = r'jlink.script'
-DEVIDE          = r'LPC1768'
+DEVIDE          = r'NRF51822'
 INTERFACE       = r'SWD'
 SPEED           = r'500'
 
 
 
+
+
+
 def reset():
     print 'reset'
-    pass
+
+    command = [
+    JLINK_DIR + JLINK_EXE,
+    '-If', INTERFACE,
+    '-Speed', SPEED,
+    '-CommanderScript', JLINK_SCRIPT,
+    '-Device', DEVIDE
+]
+    sp = subprocess.Popen(command,
+                          stdout=subprocess.PIPE,
+                          stdin=subprocess.PIPE,
+                          stderr=subprocess.PIPE)
+
+    # print sp.stdout.read()
+    print 'PID: %r' % sp.pid
+    print 'RET CODE: %r' % sp.returncode
+    print 'wait'
+    sp.wait()
+
+    out, err =  sp.communicate()
+
+    print 'STDOUT: ' + out
+    print 'STDERR: ' + err
+
+    sp.wait()
+
+    print 'Finished'
+
 
 
 def program():
     print 'program'
+
+    command = [
+    JLINK_DIR + JLINK_EXE,
+    '-If', INTERFACE,
+    '-Speed', SPEED,
+    '-CommanderScript', r'program.script',
+    '-Device', DEVIDE
+    ]
+
+    sp = subprocess.Popen(command,
+                          stdout=subprocess.PIPE,
+                          stdin=subprocess.PIPE,
+                          stderr=subprocess.PIPE)
+
+    # print sp.stdout.read()
+    print 'PID: %r' % sp.pid
+    print 'RET CODE: %r' % sp.returncode
+    print 'wait'
+    sp.wait()
+
+    out, err =  sp.communicate()
+
+    print 'STDOUT: ' + out
+    print 'STDERR: ' + err
+
+    sp.wait()
+
+    print 'Finished'
     pass
 
 
@@ -30,6 +101,7 @@ def program():
 def erase():
     print 'erase'
     pass
+
 
 def gdbserver():
     print 'gdbserver'
@@ -40,32 +112,23 @@ def gdbserver():
 
 
 
-
-command = [
-    JLINK_EXE,
-    '-If', INTERFACE,
-    '-Speed', SPEED,
-    '-CommanderScript', JLINK_SCRIPT,
-    '-Device', DEVIDE
-];
-
-sp = subprocess.Popen(command,
-                      stdout=subprocess.PIPE,
-                      stdin=subprocess.PIPE,
-                      stderr=subprocess.PIPE)
-
-print 'PID: %r' % sp.pid
-print 'RET CODE: %r' % sp.returncode
-print 'wait'
-sp.wait()
-
-out, err =  sp.communicate()
-
-print out #repr(out)
-
-sp.wait()
-
-print 'Finished'
+# sp = subprocess.Popen(command,
+#                       stdout=subprocess.PIPE,
+#                       stdin=subprocess.PIPE,
+#                       stderr=subprocess.PIPE)
+#
+# print 'PID: %r' % sp.pid
+# print 'RET CODE: %r' % sp.returncode
+# print 'wait'
+# sp.wait()
+#
+# out, err =  sp.communicate()
+#
+# print out #repr(out)
+#
+# sp.wait()
+#
+# print 'Finished'
 
 # print sp.stdout.read()
 
