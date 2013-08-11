@@ -1,0 +1,23 @@
+
+# JLinkExe script for resetting nrf51822
+power on
+Sleep 1000
+st
+speed 1000
+# reset the device
+r
+Sleep 500
+# NVIC CONFIG EEN (erase enabled)
+w4 4001e504 2
+# NVIC ERASEALL (erase all flash including UICR)
+w4 4001e50c 1
+r
+# NVIC CONFIG WEN (enable writing)
+w4 4001e504 1
+# load the soft device binary.
+loadbin "/Volumes/OSX ML/Users/EYE/workspace/Python/JLinkTools/softdevice/softdevice_main.bin" 0x10001000
+verifybin "/Volumes/OSX ML/Users/EYE/workspace/Python/JLinkTools/softdevice/softdevice_main.bin" 0x10001000
+loadbin "/Volumes/OSX ML/Users/EYE/workspace/Python/JLinkTools/softdevice/softdevice_uicr.bin" 0
+verifybin "/Volumes/OSX ML/Users/EYE/workspace/Python/JLinkTools/softdevice/softdevice_uicr.bin" 0
+r
+q

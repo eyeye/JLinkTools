@@ -8,6 +8,7 @@ if platform.system() == 'Darwin':
     JLINK_EXE = r'JLinkExe'
     JLINK_DIR = r'/Users/EYE/Dev/JLink_MacOSX_V462a/'
     JLINK_SCRIPT = r'jlink.script'
+    SOFTDEVICE_FILE = r'/Volumes/OSX ML/Users/EYE/workspace/Nordic/s110_nrf51822_5.1.0/s110_nrf51822_5.1.0_softdevice.hex'
 
     sys.path.append(JLINK_DIR)
     os.environ['DYLD_LIBRARY_PATH'] = JLINK_DIR
