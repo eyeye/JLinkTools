@@ -1,0 +1,282 @@
+{
+    "ProfileName": "BLE_Template",
+    "Services": [
+        {
+            "name": "DigtalIO",
+            "uuid": "0x0010",
+            "characteristics": [
+                {
+                    "name": "Input",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":false,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0011",
+                        "length": 1
+                    }
+                },
+                {
+                    "name": "Output",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":false,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0012",
+                        "length": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "AnalogIO",
+            "uuid": "0x0020",
+            "characteristics": [
+                {
+                    "name": "Channels",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":false,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0021",
+                        "length": 8
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Random",
+            "uuid": "0x0030",
+            "characteristics": [
+                {
+                    "name": "RandomRegs",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":false,
+                        "write":false,
+                        "notify":true,
+                        "indicate":false,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0031",
+                        "length": 8
+                    }
+                },
+                {
+                    "name": "CmacAuth",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":false,
+                        "write":true,
+                        "notify":false,
+                        "indicate":false,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0032",
+                        "length": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Uart",
+            "uuid": "0x0040",
+            "characteristics": [
+                {
+                    "name": "Tx",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":false,
+                        "write":true,
+                        "notify":false,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0041",
+                        "length": 16
+                    }
+                },
+                {
+                    "name": "Rx",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":false,
+                        "write":true,
+                        "notify":false,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0042",
+                        "length": 16
+                    }
+                }
+            ]
+        },
+        {
+            "name": "PWM",
+            "uuid": "0x0050",
+            "characteristics": [
+                {
+                    "name": "Period",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":false,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0051",
+                        "length": 2
+                    }
+                },
+                {
+                    "name": "Channels",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":false,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0052",
+                        "length": 6
+                    }
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "uuid": "0x0060",
+            "characteristics": [
+                {
+                    "name": "Quantity",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":false,
+                        "write":false,
+                        "notify":false,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0061",
+                        "length": 1
+                    }
+                },
+                {
+                    "name": "Index",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":false,
+                        "indicate":false,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0062",
+                        "length": 1
+                    }
+                },
+                {
+                    "name": "Account",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":true,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0063",
+                        "length": 16
+                    }
+                },
+                {
+                    "name": "Password",
+                    "properties": {
+                        "broadcast":false,
+                        "read":false,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":false,
+                        "indicate":false,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0064",
+                        "length": 16
+                    }
+                },
+                {
+                    "name": "ExtAddr",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":true,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0065",
+                        "length": 2
+                    }
+                },
+                {
+                    "name": "ExtData",
+                    "properties": {
+                        "broadcast":false,
+                        "read":true,
+                        "writeWithoutResponse":true,
+                        "write":true,
+                        "notify":true,
+                        "indicate":true,
+                        "authenticatedSignedWrites":false
+                    },
+                    "value": {
+                        "uuid": "0x0066",
+                        "length": 10
+                    }
+                }
+            ]
+        }
+        
+    ]
+}
