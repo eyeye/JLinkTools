@@ -40,8 +40,8 @@ def reset():
     '-If', INTERFACE,
     '-Speed', SPEED,
     '-CommanderScript', JLINK_SCRIPT,
-    '-Device', DEVIDE
-]
+    '-Device', DEVIDE ]
+
     sp = subprocess.Popen(command,
                           stdout=subprocess.PIPE,
                           stdin=subprocess.PIPE,
